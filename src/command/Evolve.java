@@ -1,5 +1,6 @@
 package command;
 
+import world.AbstractField;
 import factory.AbstractElement;
 
 public abstract class Evolve extends Command {
@@ -9,7 +10,7 @@ public abstract class Evolve extends Command {
 
 	}
 
-	public Evolve(AbsrtactField field, AbstractElement el){
+	public Evolve(AbstractField field, AbstractElement el){
 		
 	}
 	

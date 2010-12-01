@@ -1,5 +1,6 @@
 package command;
 
+import world.AbstractField;
 import factory.AbstractElement;
 
 public abstract class Move extends Command {
@@ -9,7 +10,7 @@ public abstract class Move extends Command {
 
 	}
 
-	public Move(AbsrtactField field, AbstractElement el){
+	public Move(AbstractField field, AbstractElement el){
 		
 	}
 	

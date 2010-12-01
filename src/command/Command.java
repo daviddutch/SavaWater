@@ -1,5 +1,6 @@
 package command;
 
+import world.AbstractField;
 import factory.AbstractElement;
 
 public abstract class Command {
