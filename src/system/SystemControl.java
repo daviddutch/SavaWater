@@ -1,4 +1,5 @@
 package system;
+import ihm.StartView;
 import command.Command;
 
 public class SystemControl {
