@@ -6,7 +6,7 @@ import world.Field;
 public abstract class AbstractView {
 
 	private String type;
-	private SystemControl sc;
+	protected SystemControl sc;
 	private Field f;
 	
 	public void setSystemControler(SystemControl sc){
