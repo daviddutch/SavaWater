@@ -134,11 +134,11 @@ public class GraphicView extends AbstractView implements ActionListener{
 	}
 	public static void main(String[] args) throws InterruptedException{
 		ArrayList<AbstractElement> elemList = new ArrayList<AbstractElement>();
-		Field f = new Field(elemList);
-		GraphicView g = new GraphicView(f);
+		//Field f = new Field(elemList);
+//		GraphicView g = new GraphicView(f);
 		while(true){
 			Thread.sleep(1000);
-			g.updateView();
+//			g.updateView();
 		}
 	}
 
