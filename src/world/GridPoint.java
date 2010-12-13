@@ -14,4 +14,7 @@ public class GridPoint {
   public int getY(){
     return y;
   }
+  public GridPoint clone(){
+    return new GridPoint(x, y);
+  }
 }
