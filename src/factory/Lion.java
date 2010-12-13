@@ -5,7 +5,9 @@ import world.GridPoint;
 public class Lion extends AbstractElementSavane {
   private static Lion instance;
   
-  private Lion(){}
+  private Lion(){
+    allowedMoves = new boolean[][] {{true, true, true},{true, true, true}, {true, true, true}};
+  }
   
   public static Lion getInstance(){
     if (instance==null) instance = new Lion();

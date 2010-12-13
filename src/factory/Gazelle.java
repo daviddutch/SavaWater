@@ -4,6 +4,9 @@ import world.GridPoint;
 
 public class Gazelle extends AbstractElementSavane {
 
+  public Gazelle(){
+    allowedMoves = new boolean[][] {{false, true, false},{true, true, true}, {false, true, false}};
+  }
   @Override
   public void move() {
     // TODO Auto-generated method stub
