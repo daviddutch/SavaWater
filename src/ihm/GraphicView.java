@@ -24,6 +24,7 @@ import javax.swing.SwingConstants;
 
 import factory.AbstractElement;
 
+import world.AbstractField;
 import world.Field;
 import world.GridPoint;
 
@@ -46,11 +47,11 @@ public class GraphicView extends AbstractView implements ActionListener{
 	private final int CASE_SIZE_Y;
 	private final int NB_CASE_X = 10;
 	private JFrame frame;
-	private Field field;
+	private AbstractField field;
 	private JPanel graphicPanel;
 	private JPanel buttonsPanel;
 	private JButton nextButton;
-	public GraphicView(Field f) {
+	public GraphicView(AbstractField f) {
 		super(f);
 		this.field = f;
 		frame = new JFrame(FRAME_NAME);
