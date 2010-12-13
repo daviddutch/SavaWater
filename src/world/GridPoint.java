@@ -17,4 +17,9 @@ public class GridPoint {
   public GridPoint clone(){
     return new GridPoint(x, y);
   }
+  @Override
+  public boolean equals(Object gp) {
+    GridPoint gp2 = (GridPoint) gp;
+    return (x==gp2.getX() && y==gp2.getY());
+  }
 }
