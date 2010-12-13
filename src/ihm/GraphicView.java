@@ -77,6 +77,7 @@ public class GraphicView extends AbstractView implements ActionListener{
 		Graphics2D g2d = (Graphics2D) graphicPanel.getGraphics();
 		graphicPanel.setBackground(BACKGROUND_COLOR);
 		drawGrid(g2d);
+		
 	}
 	private Point getCoordinateCase(GridPoint p) {
 		int x = CASE_SIZE_X * p.getX() + BORDER;
@@ -134,11 +135,11 @@ public class GraphicView extends AbstractView implements ActionListener{
 	}
 	public static void main(String[] args) throws InterruptedException{
 		ArrayList<AbstractElement> elemList = new ArrayList<AbstractElement>();
-		//Field f = new Field(elemList);
-//		GraphicView g = new GraphicView(f);
+		Field f = (Field) Field.getInstance(elemList);
+		GraphicView g = new GraphicView(f);
 		while(true){
 			Thread.sleep(1000);
-//			g.updateView();
+			g.updateView();
 		}
 	}
 
