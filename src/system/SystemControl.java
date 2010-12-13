@@ -19,7 +19,7 @@ public class SystemControl {
 		
 	}
 	
-	public void startSimulation(String mode, String type){
+	public void startSimulation(String mode, String type, String game){
 		
 	}
 	
