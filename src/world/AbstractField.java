@@ -13,4 +13,10 @@ public abstract class AbstractField {
   public void removeElement(AbstractElement elem){
     elemList.remove(elem);
   }
+  public void setElements(ArrayList<AbstractElement> elemList){
+    this.elemList = elemList;
+  }
+  public ArrayList<AbstractElement> getElements(){
+    return elemList;
+  }
 }
