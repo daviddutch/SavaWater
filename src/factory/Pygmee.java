@@ -4,6 +4,9 @@ import world.GridPoint;
 
 public class Pygmee extends AbstractElementSavane {
 
+  public Pygmee(){
+    allowedMoves = new boolean[][] {{true, false, true},{false, true, false}, {true, false, true}};
+  }
   @Override
   public void move() {
     // TODO Auto-generated method stub
