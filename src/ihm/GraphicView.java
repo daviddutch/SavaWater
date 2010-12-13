@@ -12,6 +12,7 @@ import java.awt.Point;
 import java.awt.Stroke;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.geom.AffineTransform;
 import java.awt.geom.Line2D;
 import java.util.ArrayList;
 
@@ -38,6 +39,7 @@ public class GraphicView extends AbstractView implements ActionListener{
 	private static final Color BACKGROUND_COLOR = Color.WHITE;
 	private static final String NEXT_BUTTON_VALUE = "next step";
 	private static final String FRAME_NAME = "Frame name";
+	private static final double IMAGE_SIZE = 400;
 	private final int NB_CASE_Y = 10;
 	private final int BORDER = 10;
 	private final int CASE_SIZE_X;
@@ -131,6 +133,27 @@ public class GraphicView extends AbstractView implements ActionListener{
 					* NB_CASE_Y + BORDER);
 			g2d.draw(line);
 		}
+		retriveG2dState(g2d);
+	}
+	private void drawElements(Graphics2D g2d){
+		saveG2dState(g2d);
+		// the local grid coordinate
+		/*
+		Point p = getCoordinateCase();
+		// calculate the position and size at disposition on the grid
+		int x = p.x;
+		int y = p.y;
+
+		// calculate the scale to concatenate the image
+		double scale_x = width / (double) IMAGE_SIZE;
+		double scale_y = height / (double) IMAGE_SIZE;
+
+		// Translate the image position
+		AffineTransform af = AffineTransform.getTranslateInstance(x, y);
+		// concatenate the image the right size
+		af.concatenate(AffineTransform.getScaleInstance(scale_x, scale_y));
+		// Draw the image with the transformation
+		g2d.drawImage(img, af, null);*/
 		retriveG2dState(g2d);
 	}
 	public static void main(String[] args) throws InterruptedException{
