@@ -69,6 +69,8 @@ public class SystemControl implements ActionListener {
 		}
 		elements = aef.createElements(af);
 		
+		af.setElements((ArrayList<AbstractElement>) elements);
+		
 		// launch game according to the mode
 		if(mode.equals("auto")){
 			new Timer(1000, this).start();
