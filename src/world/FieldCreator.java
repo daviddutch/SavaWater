@@ -8,7 +8,11 @@ public class FieldCreator implements AbstractFieldCreator{
 
   @Override
   public AbstractField createWorld(ArrayList<AbstractElement> elemList) {
-    return new Field(elemList);
+    return Field.getInstance(elemList);
+  }
+  
+  public AbstractField createWorld() {
+    return Field.getInstance();
   }
 
 }

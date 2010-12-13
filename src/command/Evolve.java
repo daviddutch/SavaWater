@@ -1,17 +1,15 @@
 package command;
 
-import world.AbstractField;
 import factory.AbstractElement;
 
 public abstract class Evolve extends Command {
 
 	public void doit() {
-		// TODO LOLOL
-
+	  element.evolve();
 	}
 
-	public Evolve(AbstractField field, AbstractElement el){
-		
+	public Evolve(AbstractElement el){
+	  element = el;
 	}
 	
 }
