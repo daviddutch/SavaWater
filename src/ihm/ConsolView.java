@@ -1,6 +1,7 @@
 package ihm;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import factory.AbstractElement;
 
@@ -12,7 +13,7 @@ public class ConsolView extends AbstractView {
   private final int NB_CASE_X = 10;
   private final int NB_CASE_Y = 10;
   
-  private ArrayList<AbstractElement> listElems;
+  private List<AbstractElement> listElems;
 
   public ConsolView(AbstractField f) {
     super(f);
