@@ -7,9 +7,11 @@ import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.awt.GraphicsConfiguration;
 import java.awt.GridLayout;
+import java.awt.Image;
 import java.awt.Paint;
 import java.awt.Point;
 import java.awt.Stroke;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.geom.AffineTransform;
@@ -23,6 +25,8 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 import factory.AbstractElement;
+import factory.Banquise;
+import factory.Herbe;
 
 import world.AbstractField;
 import world.Field;
@@ -80,7 +84,7 @@ public class GraphicView extends AbstractView implements ActionListener{
 		Graphics2D g2d = (Graphics2D) graphicPanel.getGraphics();
 		graphicPanel.setBackground(BACKGROUND_COLOR);
 		drawGrid(g2d);
-		
+		drawElements(g2d);
 	}
 	private Point getCoordinateCase(GridPoint p) {
 		int x = CASE_SIZE_X * p.getX() + BORDER;
@@ -139,23 +143,39 @@ public class GraphicView extends AbstractView implements ActionListener{
 	private void drawElements(Graphics2D g2d){
 		saveG2dState(g2d);
 		// the local grid coordinate
-		/*
-		Point p = getCoordinateCase();
+		ArrayList<AbstractElement> list = field.getElements();
+		for (AbstractElement el : list) {
+			if(isBackgroundElement(el)){
+				drawAElement(el, g2d);
+			}
+		}
+		for (AbstractElement el : list) {
+			if(!isBackgroundElement(el)){
+				drawAElement(el, g2d);
+			}
+		}
+		retriveG2dState(g2d);
+	}
+	private boolean isBackgroundElement(AbstractElement el){
+		return (el instanceof Banquise) || (el instanceof Herbe);
+	}
+	private void drawAElement(AbstractElement el, Graphics2D g2d){
+		Point p = getCoordinateCase(el.getPosition());
 		// calculate the position and size at disposition on the grid
 		int x = p.x;
 		int y = p.y;
 
 		// calculate the scale to concatenate the image
-		double scale_x = width / (double) IMAGE_SIZE;
-		double scale_y = height / (double) IMAGE_SIZE;
+		double scale_x = CASE_SIZE_X / (double) IMAGE_SIZE;
+		double scale_y = CASE_SIZE_Y / (double) IMAGE_SIZE;
 
 		// Translate the image position
 		AffineTransform af = AffineTransform.getTranslateInstance(x, y);
 		// concatenate the image the right size
 		af.concatenate(AffineTransform.getScaleInstance(scale_x, scale_y));
 		// Draw the image with the transformation
-		g2d.drawImage(img, af, null);*/
-		retriveG2dState(g2d);
+		Image img = Toolkit.getDefaultToolkit().getImage(el.getImage());
+		g2d.drawImage(img, af, null);
 	}
 	public static void main(String[] args) throws InterruptedException{
 		ArrayList<AbstractElement> elemList = new ArrayList<AbstractElement>();
