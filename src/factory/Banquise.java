@@ -1,8 +1,13 @@
 package factory;
 
+import world.AbstractField;
 import world.GridPoint;
 
 public class Banquise extends AbstractElementWater {
+
+  public Banquise(AbstractField field) {
+    super(field);
+  }
 
   @Override
   public void move() {

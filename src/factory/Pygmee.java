@@ -1,34 +1,53 @@
 package factory;
 
+import java.util.ArrayList;
+
+import world.AbstractField;
 import world.GridPoint;
 
 public class Pygmee extends AbstractElementSavane {
-
-  public Pygmee(){
+  public static final String IMG = "src/ressources/savane/pygmee.png";
+  
+  private static final int MAX_LIFE=5;
+  private int life=MAX_LIFE;
+  private boolean hasEaten=false;
+  
+  public Pygmee(AbstractField field){
+    super(field);
     allowedMoves = new boolean[][] {{true, false, true},{false, true, false}, {true, false, true}};
   }
   @Override
   public void move() {
-    // TODO Auto-generated method stub
-    
+    ArrayList<AbstractElement> listElem = getReachableElemAtDist(0);
+    for (AbstractElement elem : listElem){
+      if (elem instanceof Gazelle){
+        Gazelle gazelle = (Gazelle)elem;
+        life     = MAX_LIFE;
+        hasEaten = true;
+        setPosition(elem.getPosition());
+      }else if (elem instanceof Herbe || isOnGrass()){
+        life++;
+        hasEaten = true;
+        setPosition(elem.getPosition());
+      }else{
+        GridPoint nextPos = getRndFreePoint();
+        if (nextPos!=null)
+          setPosition(nextPos);
+      }
+    }
   }
-
+  private boolean isOnGrass(){
+    ArrayList<AbstractElement> listElem = getElementsAtPos(getPosition());
+    for (AbstractElement elem : listElem){
+      if (elem instanceof Herbe) return true;
+    }
+    return false;
+  }
   @Override
   public void evolve() {
-    // TODO Auto-generated method stub
-    
-  }
-
-  @Override
-  public GridPoint getPosition() {
-    // TODO Auto-generated method stub
-    return null;
-  }
-
-  @Override
-  public void setPosition(GridPoint point) {
-    // TODO Auto-generated method stub
-    
+    if (!hasEaten) life--;
+    hasEaten=false;
+    if (life<0) field.removeElement(this);
   }
 
 }

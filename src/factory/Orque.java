@@ -1,14 +1,17 @@
 package factory;
 
+import world.AbstractField;
 import world.GridPoint;
 
 public class Orque extends AbstractElementWater {
+  public Orque(AbstractField field) {
+    super(field);
+  }
+
   private static Orque instance;
   
-  private Orque(){}
-  
-  public static Orque getInstance(){
-    if (instance==null) instance = new Orque();
+  public static Orque getInstance(AbstractField field){
+    if (instance==null) instance = new Orque(field);
     return instance;
   }
   

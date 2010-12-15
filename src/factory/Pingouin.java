@@ -1,8 +1,13 @@
 package factory;
 
+import world.AbstractField;
 import world.GridPoint;
 
 public class Pingouin extends AbstractElementWater {
+
+  public Pingouin(AbstractField field) {
+    super(field);
+  }
 
   @Override
   public void move() {
