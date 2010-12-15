@@ -8,11 +8,9 @@ public class Banquise extends AbstractElementWater {
   public Banquise(AbstractField field) {
     super(field);
   }
-
   @Override
   public void move() {
     // TODO Auto-generated method stub
-    
   }
 
   @Override
@@ -21,6 +19,7 @@ public class Banquise extends AbstractElementWater {
     
   }
 
+  /*
   @Override
   public GridPoint getPosition() {
     // TODO Auto-generated method stub
@@ -31,6 +30,6 @@ public class Banquise extends AbstractElementWater {
   public void setPosition(GridPoint point) {
     // TODO Auto-generated method stub
     
-  }
+  }*/
 
 }

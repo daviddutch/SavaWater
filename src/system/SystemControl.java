@@ -47,13 +47,13 @@ public class SystemControl implements ActionListener {
 	 * @param game between Savana/Water
 	 */
 	public void startSimulation(String mode, String type, String game){
-		// creation of the view
-		AbstractVueFactory avf = new ConcreteViewFactory();
-		AbstractView av = avf.createView(type);
-		
 		// creation of field
 		AbstractFieldCreator afc = new FieldCreator();
 		AbstractField af = afc.createWorld();
+		
+		// creation of the view
+		AbstractVueFactory avf = new ConcreteViewFactory();
+		AbstractView av = avf.createView(type,af);
 		
 		// creation of elements
 		AbstractElementFactory aef = null;
@@ -68,6 +68,8 @@ public class SystemControl implements ActionListener {
 			System.exit(0);
 		}
 		elements = aef.createElements(af);
+		
+		af.setElements((ArrayList<AbstractElement>) elements);
 		
 		// launch game according to the mode
 		if(mode.equals("auto")){

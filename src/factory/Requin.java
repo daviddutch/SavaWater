@@ -20,7 +20,7 @@ public class Requin extends AbstractElementWater {
     // TODO Auto-generated method stub
     
   }
-
+/*
   @Override
   public GridPoint getPosition() {
     // TODO Auto-generated method stub
@@ -31,6 +31,6 @@ public class Requin extends AbstractElementWater {
   public void setPosition(GridPoint point) {
     // TODO Auto-generated method stub
     
-  }
+  }*/
 
 }

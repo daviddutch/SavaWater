@@ -7,11 +7,13 @@ import world.GridPoint;
 
 public abstract class AbstractElement {
   protected String img;
+  protected String letter;
   
   public enum Gender {
     FEMALE, MALE, NONE;
   }
   protected AbstractField field;
+
   protected GridPoint pos;
   protected boolean[][] allowedMoves;
   private   GridPoint[][] moves = new GridPoint[][] {{new GridPoint(-1,+1), new GridPoint(+1,0), new GridPoint(+1,+1)},
@@ -28,6 +30,13 @@ public abstract class AbstractElement {
   }
   public Gender getGender(){
     return gender;
+  }
+  public String getLetter() {
+    return letter;
+  }
+  
+  public void setLetter(String letter) {
+      this.letter = letter;
   }
   public abstract void move();
   public abstract void evolve();

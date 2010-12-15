@@ -21,6 +21,7 @@ public class Pingouin extends AbstractElementWater {
     
   }
 
+  /*
   @Override
   public GridPoint getPosition() {
     // TODO Auto-generated method stub
@@ -31,6 +32,6 @@ public class Pingouin extends AbstractElementWater {
   public void setPosition(GridPoint point) {
     // TODO Auto-generated method stub
     
-  }
+  }*/
 
 }

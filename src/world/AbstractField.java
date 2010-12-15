@@ -1,11 +1,11 @@
 package world;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import factory.AbstractElement;
 
 public abstract class AbstractField {
-  protected ArrayList<AbstractElement> elemList = new ArrayList<AbstractElement>();
+  protected List<AbstractElement> elemList;
     
   public void addElement(AbstractElement elem){
     elemList.add(elem);
@@ -13,10 +13,10 @@ public abstract class AbstractField {
   public void removeElement(AbstractElement elem){
     elemList.remove(elem);
   }
-  public void setElements(ArrayList<AbstractElement> elemList){
+  public void setElements(List<AbstractElement> elemList){
     this.elemList = elemList;
   }
-  public ArrayList<AbstractElement> getElements(){
+  public List<AbstractElement> getElements(){
     return elemList;
   }
 }

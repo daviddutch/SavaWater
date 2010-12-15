@@ -49,5 +49,4 @@ public class Pygmee extends AbstractElementSavane {
     hasEaten=false;
     if (life<0) field.removeElement(this);
   }
-
 }
