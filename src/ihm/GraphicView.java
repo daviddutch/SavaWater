@@ -288,7 +288,7 @@ public class GraphicView extends AbstractView implements ActionListener{
 		}
 	}
 
-	@Override
+
 	/**
 	 * Action performed on the next step button
 	 */

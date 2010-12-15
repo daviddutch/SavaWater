@@ -1,6 +1,6 @@
 package ihm;
 
-import java.util.ArrayList;
+
 import java.util.List;
 
 import factory.AbstractElement;
@@ -17,7 +17,6 @@ public class ConsolView extends AbstractView {
 
   public ConsolView(AbstractField f) {
     super(f);
-      	  
   }
 
   public void updateView() {
