@@ -95,59 +95,60 @@ public class ConsolView extends AbstractView {
 	 */
 	public static void main(String[] args) throws InterruptedException{
 		ArrayList<AbstractElement> elemList = new ArrayList<AbstractElement>();
+		Field f = (Field) Field.getInstance(elemList);
 		
-		Gazelle gazelle = new Gazelle();
+		Gazelle gazelle = new Gazelle(f);
 		gazelle.setPosition(new GridPoint(0, 0));
 		gazelle.setLetter("G");
 		elemList.add(gazelle);
 		elemList.add(gazelle);
 		
-		Lion lion = Lion.getInstance();
+		Lion lion = Lion.getInstance(f);
 		lion.setPosition(new GridPoint(0, 1));
 		lion.setLetter("L");
 		elemList.add(lion);
 		
-		Orque orque = Orque.getInstance();
+		Orque orque = Orque.getInstance(f);
 		orque.setPosition(new GridPoint(0, 2));
 		orque.setLetter("O");
 		elemList.add(orque);
 		
-		Pingouin pingouin = new Pingouin();
+		Pingouin pingouin = new Pingouin(f);
 		pingouin.setPosition(new GridPoint(0, 3));
 		pingouin.setLetter("P");
 		elemList.add(pingouin);
 		
-		Pygmee pygmee = new Pygmee();
+		Pygmee pygmee = new Pygmee(f);
 		pygmee.setPosition(new GridPoint(0, 4));
 		pygmee.setLetter("P");
 		elemList.add(pygmee);
 		
-		Requin requin = new Requin();
+		Requin requin = new Requin(f);
 		requin.setPosition(new GridPoint(0, 5));
 		requin.setLetter("R");
 		elemList.add(requin);
 		
-		Banquise banquise = new Banquise();
+		Banquise banquise = new Banquise(f);
 		banquise.setPosition(new GridPoint(0, 0));
 		banquise.setLetter("B");
 		elemList.add(banquise);
 		
-		Banquise banquise2 = new Banquise();
+		Banquise banquise2 = new Banquise(f);
 		banquise2.setPosition(new GridPoint(0, 6));
 		banquise2.setLetter("B");
 		elemList.add(banquise2);
 		
-		Herbe herbe = new Herbe();
+		Herbe herbe = new Herbe(f);
 		herbe.setPosition(new GridPoint(0, 1));
 		herbe.setLetter("H");
 		elemList.add(herbe);
 		
-		Herbe herbe2 = new Herbe();
+		Herbe herbe2 = new Herbe(f);
 		herbe2.setPosition(new GridPoint(0, 7));
 		herbe2.setLetter("H");
 		elemList.add(herbe2);
 		
-		Field f = (Field) Field.getInstance(elemList);
+		f = (Field) Field.getInstance(elemList);
 		
 		ConsolView g = new ConsolView(f);
 		while(true){
