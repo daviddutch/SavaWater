@@ -6,7 +6,6 @@ public class Banquise extends AbstractElementWater {
   @Override
   public void move() {
     // TODO Auto-generated method stub
-    
   }
 
   @Override

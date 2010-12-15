@@ -1,9 +1,20 @@
 package ihm;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 import factory.AbstractElement;
+import factory.AbstractElementSavane;
+import factory.AbstractElementWater;
+import factory.Banquise;
+import factory.Gazelle;
+import factory.Herbe;
+import factory.Lion;
+import factory.Orque;
+import factory.Pingouin;
+import factory.Pygmee;
+import factory.Requin;
 
 import world.AbstractField;
 import world.Field;
@@ -33,7 +44,7 @@ public class ConsolView extends AbstractView {
       result +=border+"\n";
       content="";
       for(int j=0;j<NB_CASE_X;j++){
-        content+="| "+getElem(new GridPoint(j, i))+" ";
+        content+="|"+getElem(new GridPoint(j, i));
       }
       content+="|";
       result+=content+"\n";
@@ -41,16 +52,107 @@ public class ConsolView extends AbstractView {
     
     result+=border+"\n";
     System.out.println(result);
+    printLabels();
   }
   
-  public char getElem(GridPoint pt){
-    char c = ' ';
-    for(int i=0;i<listElems.size();i++){
-      if(listElems.get(i).getPosition().equals(pt)){
-        c='a';
-      }
+  private String getElem(GridPoint pt){
+    String c = "";
+    for (AbstractElement i : listElems) {
+    	if(i.getPosition().equals(pt)){
+    		c+=i.getLetter();
+    	}
     }
-    
+    switch (c.length()) {
+		case 0:c=" ";
+		case 1:c=" "+c;
+		case 2:c+=" ";
+		default:
+	}
     return c;
   }
+  private void printLabels(){
+	  if(f.getElements().get(0) instanceof AbstractElementSavane){
+		  System.out.println("+-------------+");
+		  System.out.println("| L : lion    |");
+		  System.out.println("| G : Gazelle |");
+		  System.out.println("| P : Pygmée  |");
+		  System.out.println("| H : Herbe   |");
+		  System.out.println("+-------------+");
+	  }
+	  if(f.getElements().get(0) instanceof AbstractElementWater){
+		  System.out.println("+-------------+");
+		  System.out.println("| R : requin  |");
+		  System.out.println("| O : orque   |");
+		  System.out.println("| P : pingouin|");
+		  System.out.println("| B : banquise|");
+		  System.out.println("+-------------+");
+	  }
+  }
+	/**
+	 * Todo : remove this method when tests are over 
+	 * @param args
+	 * @throws InterruptedException
+	 */
+	public static void main(String[] args) throws InterruptedException{
+		ArrayList<AbstractElement> elemList = new ArrayList<AbstractElement>();
+		
+		Gazelle gazelle = new Gazelle();
+		gazelle.setPosition(new GridPoint(0, 0));
+		gazelle.setLetter("G");
+		elemList.add(gazelle);
+		elemList.add(gazelle);
+		
+		Lion lion = Lion.getInstance();
+		lion.setPosition(new GridPoint(0, 1));
+		lion.setLetter("L");
+		elemList.add(lion);
+		
+		Orque orque = Orque.getInstance();
+		orque.setPosition(new GridPoint(0, 2));
+		orque.setLetter("O");
+		elemList.add(orque);
+		
+		Pingouin pingouin = new Pingouin();
+		pingouin.setPosition(new GridPoint(0, 3));
+		pingouin.setLetter("P");
+		elemList.add(pingouin);
+		
+		Pygmee pygmee = new Pygmee();
+		pygmee.setPosition(new GridPoint(0, 4));
+		pygmee.setLetter("P");
+		elemList.add(pygmee);
+		
+		Requin requin = new Requin();
+		requin.setPosition(new GridPoint(0, 5));
+		requin.setLetter("R");
+		elemList.add(requin);
+		
+		Banquise banquise = new Banquise();
+		banquise.setPosition(new GridPoint(0, 0));
+		banquise.setLetter("B");
+		elemList.add(banquise);
+		
+		Banquise banquise2 = new Banquise();
+		banquise2.setPosition(new GridPoint(0, 6));
+		banquise2.setLetter("B");
+		elemList.add(banquise2);
+		
+		Herbe herbe = new Herbe();
+		herbe.setPosition(new GridPoint(0, 1));
+		herbe.setLetter("H");
+		elemList.add(herbe);
+		
+		Herbe herbe2 = new Herbe();
+		herbe2.setPosition(new GridPoint(0, 7));
+		herbe2.setLetter("H");
+		elemList.add(herbe2);
+		
+		Field f = (Field) Field.getInstance(elemList);
+		
+		ConsolView g = new ConsolView(f);
+		while(true){
+			g.updateView();
+			Thread.sleep(10000);
+		}
+	}
 }
