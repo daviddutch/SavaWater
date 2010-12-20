@@ -6,6 +6,8 @@ import world.GridPoint;
 public class Orque extends AbstractElementWater {
   public Orque(AbstractField field) {
     super(field);
+    img = "src/ressources/water/orque.png";
+    letter = "O";
   }
 
   private static Orque instance;

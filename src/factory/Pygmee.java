@@ -14,6 +14,8 @@ public class Pygmee extends AbstractElementSavane {
   
   public Pygmee(AbstractField field){
     super(field);
+    img = "src/ressources/water/pygmee.png";
+    letter = "P";
     allowedMoves = new boolean[][] {{true, false, true},{false, true, false}, {true, false, true}};
   }
   @Override

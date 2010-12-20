@@ -7,6 +7,8 @@ public class Pingouin extends AbstractElementWater {
 
   public Pingouin(AbstractField field) {
     super(field);
+    img = "src/ressources/water/pingouin.png";
+    letter = "P";
   }
 
   @Override

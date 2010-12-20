@@ -7,6 +7,8 @@ public class Requin extends AbstractElementWater {
 
   public Requin(AbstractField field) {
     super(field);
+    img = "src/ressources/water/requin.png";
+    letter = "R";
   }
 
   @Override
