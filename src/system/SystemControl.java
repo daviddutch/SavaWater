@@ -4,6 +4,7 @@ import javax.swing.Timer;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import world.AbstractField;
 import world.AbstractFieldCreator;
@@ -13,6 +14,8 @@ import ihm.AbstractVueFactory;
 import ihm.ConcreteViewFactory;
 import ihm.StartView;
 import command.Command;
+import command.Evolve;
+import command.Move;
 import factory.AbstractElement;
 import factory.AbstractElementFactory;
 import factory.FactorySavane;
@@ -21,9 +24,11 @@ import factory.FactoryWater;
 public class SystemControl implements ActionListener {
 
 	List<AbstractElement> elements;
+	Random r;
 	
 	public SystemControl() {
 		StartView sv = new StartView(this);
+		r = new Random();
 	}
 	
 	/**
@@ -37,6 +42,17 @@ public class SystemControl implements ActionListener {
 	 * TODO
 	 */
 	public void nextStep(){
+		int i = r.nextInt(elements.size());
+		
+		AbstractElement el = elements.get(i);
+		
+		Command move = new Move(el);
+		
+		execute(move);
+		
+		Command evolve = new Evolve(el);
+		
+		execute(evolve);
 		
 	}
 	
@@ -79,7 +95,7 @@ public class SystemControl implements ActionListener {
 	
 	// TODO
 	public void execute(Command cmd){
-		
+		cmd.doit();
 	}
 
 	@Override

@@ -2,7 +2,7 @@ package command;
 
 import factory.AbstractElement;
 
-public abstract class Move extends Command {
+public class Move extends Command {
 
 	public void doit() {
 	  element.move();
