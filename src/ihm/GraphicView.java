@@ -90,8 +90,8 @@ public class GraphicView extends AbstractView implements ActionListener{
 	public void updateView() {
 		Graphics2D g2d = (Graphics2D) graphicPanel.getGraphics();
 		graphicPanel.setBackground(BACKGROUND_COLOR);
-		drawGrid(g2d);
 		drawElements(g2d);
+		drawGrid(g2d);
 	}
 	/**
 	 * Get the local point in the panel of the corner left down of a gridPoint

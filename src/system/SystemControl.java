@@ -23,8 +23,9 @@ import factory.FactoryWater;
 
 public class SystemControl implements ActionListener {
 
-	List<AbstractElement> elements;
-	Random r;
+	private List<AbstractElement> elements;
+	private Random r;
+	private AbstractView av;
 	
 	public SystemControl() {
 		StartView sv = new StartView(this);
@@ -54,6 +55,7 @@ public class SystemControl implements ActionListener {
 		
 		execute(evolve);
 		
+		av.updateView();
 	}
 	
 	/**
@@ -69,7 +71,7 @@ public class SystemControl implements ActionListener {
 		
 		// creation of the view
 		AbstractVueFactory avf = new ConcreteViewFactory();
-		AbstractView av = avf.createView(type,af);
+		av = avf.createView(type,af);
 		
 		// creation of elements
 		AbstractElementFactory aef = null;
@@ -87,6 +89,7 @@ public class SystemControl implements ActionListener {
 		
 		af.setElements((ArrayList<AbstractElement>) elements);
 		
+		av.updateView();
 		// launch game according to the mode
 		if(mode.equals("auto")){
 			new Timer(1000, this).start();

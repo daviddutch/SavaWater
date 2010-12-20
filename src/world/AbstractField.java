@@ -6,7 +6,8 @@ import factory.AbstractElement;
 
 public abstract class AbstractField {
   protected List<AbstractElement> elemList;
-    
+  public static int SIZE_X = 10;
+  public static int SIZE_Y = 10;
   public void addElement(AbstractElement elem){
     elemList.add(elem);
   }

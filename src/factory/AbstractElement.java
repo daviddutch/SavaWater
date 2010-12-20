@@ -21,7 +21,7 @@ public abstract class AbstractElement {
                                                      {new GridPoint(-1,-1), new GridPoint(0,-1), new GridPoint(+1,-1)}
                                                      };
   protected Gender gender = Gender.NONE;
-  
+
   public AbstractElement(AbstractField field){
     this.field = field;
   }
