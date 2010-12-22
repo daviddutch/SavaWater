@@ -24,6 +24,7 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 import factory.*;
+import factory.AbstractElement.Gender;
 
 import world.AbstractField;
 import world.Field;
@@ -204,6 +205,11 @@ public class GraphicView extends AbstractView implements ActionListener{
 	 * @param g2d Graphics2D to draw on
 	 */
 	private void drawAElement(AbstractElement el, Graphics2D g2d){
+		if(el instanceof Gazelle){
+			drawAGazelle((Gazelle)el, g2d);
+			return;
+		}
+			
 		Point p = getCoordinateCase(el.getPosition());
 		// calculate the position and size at disposition on the grid
 		int x = p.x;
@@ -217,6 +223,28 @@ public class GraphicView extends AbstractView implements ActionListener{
 		AffineTransform af = AffineTransform.getTranslateInstance(x, y);
 		// concatenate the image the right size
 		af.concatenate(AffineTransform.getScaleInstance(scale_x, scale_y));
+		// Draw the image with the transformation
+		Image img = Toolkit.getDefaultToolkit().getImage(el.getImage());
+		g2d.drawImage(img, af, null);
+	}
+	
+	private void drawAGazelle(Gazelle el, Graphics2D g2d){
+		Point p = getCoordinateCase(el.getPosition());
+		// calculate the position and size at disposition on the grid
+		int x = p.x;
+		int y = p.y;
+		
+		// calculate the scale to concatenate the image
+		double scale_x = CASE_SIZE_X / (double) IMAGE_SIZE;
+		double scale_y = CASE_SIZE_Y / (double) IMAGE_SIZE;
+		if(el.getGender()==Gender.FEMALE){
+			scale_x *= -1;
+		}
+		// Translate the image position
+		AffineTransform af = AffineTransform.getTranslateInstance(x, y);
+		// concatenate the image the right size
+		af.concatenate(AffineTransform.getScaleInstance(scale_x, scale_y));
+		
 		// Draw the image with the transformation
 		Image img = Toolkit.getDefaultToolkit().getImage(el.getImage());
 		g2d.drawImage(img, af, null);
