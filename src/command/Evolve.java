@@ -2,7 +2,7 @@ package command;
 
 import factory.AbstractElement;
 
-public abstract class Evolve extends Command {
+public class Evolve extends Command {
 
 	public void doit() {
 	  element.evolve();

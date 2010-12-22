@@ -4,6 +4,7 @@ import javax.swing.Timer;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import world.AbstractField;
 import world.AbstractFieldCreator;
@@ -13,6 +14,8 @@ import ihm.AbstractVueFactory;
 import ihm.ConcreteViewFactory;
 import ihm.StartView;
 import command.Command;
+import command.Evolve;
+import command.Move;
 import factory.AbstractElement;
 import factory.AbstractElementFactory;
 import factory.FactorySavane;
@@ -20,10 +23,13 @@ import factory.FactoryWater;
 
 public class SystemControl implements ActionListener {
 
-	List<AbstractElement> elements;
+	private List<AbstractElement> elements;
+	private Random r;
+	private AbstractView av;
 	
 	public SystemControl() {
 		StartView sv = new StartView(this);
+		r = new Random();
 	}
 	
 	/**
@@ -37,7 +43,19 @@ public class SystemControl implements ActionListener {
 	 * TODO
 	 */
 	public void nextStep(){
+		int i = r.nextInt(elements.size());
 		
+		AbstractElement el = elements.get(i);
+		
+		Command move = new Move(el);
+		
+		execute(move);
+		
+		Command evolve = new Evolve(el);
+		
+		execute(evolve);
+		
+		av.updateView();
 	}
 	
 	/**
@@ -53,7 +71,7 @@ public class SystemControl implements ActionListener {
 		
 		// creation of the view
 		AbstractVueFactory avf = new ConcreteViewFactory();
-		AbstractView av = avf.createView(type,af);
+		av = avf.createView(type,af);
 		
 		// creation of elements
 		AbstractElementFactory aef = null;
@@ -71,6 +89,7 @@ public class SystemControl implements ActionListener {
 		
 		af.setElements((ArrayList<AbstractElement>) elements);
 		
+		av.updateView();
 		// launch game according to the mode
 		if(mode.equals("auto")){
 			new Timer(1000, this).start();
@@ -79,7 +98,7 @@ public class SystemControl implements ActionListener {
 	
 	// TODO
 	public void execute(Command cmd){
-		
+		cmd.doit();
 	}
 
 	@Override
