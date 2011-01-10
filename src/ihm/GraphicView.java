@@ -69,6 +69,7 @@ public class GraphicView extends AbstractView implements ActionListener{
 		frame = new JFrame(FRAME_NAME);
 		frame.setSize(FRAME_WIDTH, FRAME_HEIGHT);
 		frame.setLayout(null);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		graphicPanel = new JPanel();
 		graphicPanel.setSize(GRAPHIC_PANEL_WIDTH,GRAPHIC_PANEL_HEIGHT);
 		graphicPanel.setLocation(0, 0);

@@ -29,6 +29,7 @@ public class StartView extends JFrame implements ActionListener{
 	private void initView() {
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		setLayout(new GridLayout(4, 1));
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		JPanel mode = new JPanel(new GridLayout(3, 1));
 		buttonAuto = new JRadioButton("Mode Automatic");
 		JRadioButton buttonManu = new JRadioButton("Mode Manual");
