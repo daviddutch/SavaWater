@@ -27,16 +27,17 @@ public class Pygmee extends AbstractElementSavane {
         life     = MAX_LIFE;
         hasEaten = true;
         setPosition(elem.getPosition());
+        return;
       }else if (elem instanceof Herbe || isOnGrass()){
         life++;
         hasEaten = true;
         setPosition(elem.getPosition());
-      }else{
-        GridPoint nextPos = getRndFreePoint();
-        if (nextPos!=null)
-          setPosition(nextPos);
+        return;
       }
     }
+    GridPoint nextPos = getRndFreePoint();
+    if (nextPos!=null)
+      setPosition(nextPos);
   }
   private boolean isOnGrass(){
     ArrayList<AbstractElement> listElem = getElementsAtPos(getPosition());

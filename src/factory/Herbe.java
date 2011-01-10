@@ -14,12 +14,11 @@ public class Herbe extends AbstractElementSavane {
   }
   @Override
   public void move() {
-    
+    //Grass doesn't move ;-)
   }
 
   @Override
   public void evolve() {
-    // TODO Auto-generated method stub
     
   }
 

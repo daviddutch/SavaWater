@@ -28,23 +28,24 @@ public class Gazelle extends AbstractElementSavane {
   public void move() {
     ArrayList<AbstractElement> listElem = getReachableElemAtDist(0);
     for (AbstractElement elem : listElem){
-      if (elem instanceof Gazelle){
-        field.removeElement(elem);
+      if (elem instanceof Herbe){
         life=MAX_LIFE;
         hasEaten=true;
         setPosition(elem.getPosition());
-      }else{
-        GridPoint nextPos = getRndFreePoint();
-        if (nextPos!=null)
-          setPosition(nextPos);
+        return;
       }
     }
+    GridPoint nextPos = getRndFreePoint();
+    if (nextPos!=null)
+      setPosition(nextPos);
   }
   
   @Override
   public void evolve() {
     if (!hasEaten) life--;
     hasEaten=false;
-    if (life<0) field.removeElement(this);
+    if (life<0) {
+      field.removeElement(this);
+    }
   }
 }

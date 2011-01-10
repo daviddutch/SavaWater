@@ -29,17 +29,4 @@ public class Orque extends AbstractElementWater {
     
   }
 
-  /*
-  @Override
-  public GridPoint getPosition() {
-    // TODO Auto-generated method stub
-    return null;
-  }
-
-  @Override
-  public void setPosition(GridPoint point) {
-    // TODO Auto-generated method stub
-    
-  }*/
-
 }

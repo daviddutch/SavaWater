@@ -33,16 +33,18 @@ public class Lion extends AbstractElementSavane {
         life=MAX_LIFE;
         hasEaten=true;
         setPosition(elem.getPosition());
+        return;
       }else if (elem instanceof Pygmee){
+        field.removeElement(elem);
         life=MAX_LIFE;
         hasEaten=true;
         setPosition(elem.getPosition());
-      }else{
-        GridPoint nextPos = getRndFreePoint();
-        if (nextPos!=null)
-          setPosition(nextPos);
+        return;
       }
     }
+    GridPoint nextPos = getRndFreePoint();
+    if (nextPos!=null)
+      setPosition(nextPos);
   }
   
   @Override
