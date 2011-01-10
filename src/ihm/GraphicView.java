@@ -7,6 +7,7 @@ import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.awt.GridLayout;
 import java.awt.Image;
+import java.awt.Rectangle;
 import java.util.List;
 import java.awt.Paint;
 import java.awt.Point;
@@ -16,6 +17,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Line2D;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
@@ -90,9 +92,16 @@ public class GraphicView extends AbstractView implements ActionListener{
 	 */
 	public void updateView() {
 		Graphics2D g2d = (Graphics2D) graphicPanel.getGraphics();
-		graphicPanel.setBackground(BACKGROUND_COLOR);
-		drawElements(g2d);
-		drawGrid(g2d);
+		Image image;
+		image = new BufferedImage(GRAPHIC_PANEL_WIDTH,GRAPHIC_PANEL_WIDTH,BufferedImage.TYPE_INT_RGB);
+		Graphics2D g2dBuffer = (Graphics2D) image.getGraphics();
+		saveG2dState(g2dBuffer);
+		g2dBuffer.setColor(BACKGROUND_COLOR);
+		g2dBuffer.fill(new Rectangle(0, 0, graphicPanel.getWidth(), graphicPanel.getHeight()));
+		retriveG2dState(g2dBuffer);
+		drawElements(g2dBuffer);
+		drawGrid(g2dBuffer);
+		g2d.drawImage(image, 0, 0, null);
 	}
 	/**
 	 * Get the local point in the panel of the corner left down of a gridPoint
