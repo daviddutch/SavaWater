@@ -73,6 +73,7 @@ public class SystemControl implements ActionListener {
 		AbstractVueFactory avf = new ConcreteViewFactory();
 		av = avf.createView(type,af);
 		
+		av.setSystemControler(this);
 		// creation of elements
 		AbstractElementFactory aef = null;
 		if(game.equals("Savana")){
