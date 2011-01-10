@@ -28,11 +28,6 @@ public class Pygmee extends AbstractElementSavane {
         hasEaten = true;
         setPosition(elem.getPosition());
         return;
-      }else if (elem instanceof Herbe || isOnGrass()){
-        life++;
-        hasEaten = true;
-        setPosition(elem.getPosition());
-        return;
       }
     }
     GridPoint nextPos = getRndFreePoint();
