@@ -69,6 +69,7 @@ public class GraphicView extends AbstractView implements ActionListener{
 		frame = new JFrame(FRAME_NAME);
 		frame.setSize(FRAME_WIDTH, FRAME_HEIGHT);
 		frame.setLayout(null);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		graphicPanel = new JPanel();
 		graphicPanel.setSize(GRAPHIC_PANEL_WIDTH,GRAPHIC_PANEL_HEIGHT);
 		graphicPanel.setLocation(0, 0);
@@ -80,6 +81,7 @@ public class GraphicView extends AbstractView implements ActionListener{
 		buttonsPanel.setPreferredSize(new Dimension(BUTTONS_PANEL_WIDTH,BUTTONS_PANEL_HEIGHT));
 		nextButton = new JButton(NEXT_BUTTON_VALUE);
 		nextButton.setHorizontalTextPosition(SwingConstants.CENTER);
+		nextButton.addActionListener(this);
 		buttonsPanel.add(nextButton);
 		frame.add(graphicPanel);
 		frame.add(buttonsPanel);
