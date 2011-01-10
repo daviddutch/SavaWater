@@ -56,8 +56,8 @@ public abstract class AbstractElement {
       for (int y=0;y<3;y++){
         if (allowedMoves[x][y]){
           GridPoint reachable = new GridPoint(curPos.getX()+moves[x][y].getX(), curPos.getY()+moves[x][y].getY());
-          if (reachable.getX()<0 || reachable.getX()>field.SIZE_X) continue;
-          if (reachable.getY()<0 || reachable.getY()>field.SIZE_Y) continue;
+          if (reachable.getX()<0 || reachable.getX()>=field.SIZE_X) continue;
+          if (reachable.getY()<0 || reachable.getY()>=field.SIZE_Y) continue;
           ArrayList<AbstractElement> elems = getElementsAtPos(reachable);
           if (elems.size()>0)
              listElem.addAll(elems);
@@ -81,8 +81,8 @@ public abstract class AbstractElement {
       for (int y=0;y<3;y++){
         if (allowedMoves[x][y]){
           GridPoint reachable = new GridPoint(curPos.getX()+moves[x][y].getX(), curPos.getY()+moves[x][y].getY());
-          if (reachable.getX()<0 || reachable.getX()>field.SIZE_X) continue;
-          if (reachable.getY()<0 || reachable.getY()>field.SIZE_Y) continue;
+          if (reachable.getX()<0 || reachable.getX()>=field.SIZE_X) continue;
+          if (reachable.getY()<0 || reachable.getY()>=field.SIZE_Y) continue;
           ArrayList<AbstractElement> elems = getElementsAtPos(reachable);
           if (elems.size()==0)
              return reachable.clone();

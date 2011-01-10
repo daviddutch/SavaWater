@@ -24,12 +24,11 @@ import factory.FactoryWater;
 public class SystemControl implements ActionListener {
 
 	private List<AbstractElement> elements;
-	private Random r;
 	private AbstractView av;
+	private int nextElement=-1;
 	
 	public SystemControl() {
-		StartView sv = new StartView(this);
-		r = new Random();
+		new StartView(this);
 	}
 	
 	/**
@@ -43,9 +42,8 @@ public class SystemControl implements ActionListener {
 	 * TODO
 	 */
 	public void nextStep(){
-		int i = r.nextInt(elements.size());
-		
-		AbstractElement el = elements.get(i);
+	        nextElement = nextElement<elements.size()-1 ? nextElement+1 : 0;
+		AbstractElement el = elements.get(nextElement);
 		
 		Command move = new Move(el);
 		

@@ -27,19 +27,13 @@ public class Pygmee extends AbstractElementSavane {
         life     = MAX_LIFE;
         hasEaten = true;
         setPosition(elem.getPosition());
+        field.removeElement(elem);
         return;
       }
     }
     GridPoint nextPos = getRndFreePoint();
     if (nextPos!=null)
       setPosition(nextPos);
-  }
-  private boolean isOnGrass(){
-    ArrayList<AbstractElement> listElem = getElementsAtPos(getPosition());
-    for (AbstractElement elem : listElem){
-      if (elem instanceof Herbe) return true;
-    }
-    return false;
   }
   @Override
   public void evolve() {
