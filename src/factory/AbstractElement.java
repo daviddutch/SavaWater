@@ -1,6 +1,7 @@
 package factory;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 import world.AbstractField;
 import world.GridPoint;
@@ -56,8 +57,8 @@ public abstract class AbstractElement {
       for (int y=0;y<3;y++){
         if (allowedMoves[x][y]){
           GridPoint reachable = new GridPoint(curPos.getX()+moves[x][y].getX(), curPos.getY()+moves[x][y].getY());
-          if (reachable.getX()<0 || reachable.getX()>field.SIZE_X) continue;
-          if (reachable.getY()<0 || reachable.getY()>field.SIZE_Y) continue;
+          if (reachable.getX()<0 || reachable.getX()>=field.SIZE_X) continue;
+          if (reachable.getY()<0 || reachable.getY()>=field.SIZE_Y) continue;
           ArrayList<AbstractElement> elems = getElementsAtPos(reachable);
           if (elems.size()>0)
              listElem.addAll(elems);
@@ -69,26 +70,34 @@ public abstract class AbstractElement {
   protected ArrayList<AbstractElement> getElementsAtPos(GridPoint position){
     ArrayList<AbstractElement> elems = new ArrayList<AbstractElement>();
     for (AbstractElement elem : field.getElements()){
-      if (elem.getPosition().equals(position)){
+      if (elem.getPosition().equals(position) && elem!=this){
         elems.add(elem);
       }
     }
+    Collections.shuffle(elems); //add random to the list
     return elems;
   }
   protected GridPoint getRndFreePoint(){
+    ArrayList<GridPoint> freePoints = new ArrayList<GridPoint>();
     GridPoint curPos = getPosition();
     for (int x=0;x<3;x++){
       for (int y=0;y<3;y++){
         if (allowedMoves[x][y]){
           GridPoint reachable = new GridPoint(curPos.getX()+moves[x][y].getX(), curPos.getY()+moves[x][y].getY());
-          if (reachable.getX()<0 || reachable.getX()>field.SIZE_X) continue;
-          if (reachable.getY()<0 || reachable.getY()>field.SIZE_Y) continue;
+          if (reachable.getX()<0 || reachable.getX()>=field.SIZE_X) continue;
+          if (reachable.getY()<0 || reachable.getY()>=field.SIZE_Y) continue;
           ArrayList<AbstractElement> elems = getElementsAtPos(reachable);
           if (elems.size()==0)
-             return reachable.clone();
+            freePoints.add(reachable);
         }
       }
     }
+    Collections.shuffle(freePoints);
+    if (freePoints.size()!=0)
+      return freePoints.get(0);
     return null;
+  }
+  public String toString(){
+    return letter+" "+gender+" Position : "+pos.toString();
   }
 }

@@ -4,7 +4,6 @@ import javax.swing.Timer;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 import world.AbstractField;
 import world.AbstractFieldCreator;
@@ -24,12 +23,11 @@ import factory.FactoryWater;
 public class SystemControl implements ActionListener {
 
 	private List<AbstractElement> elements;
-	private Random r;
 	private AbstractView av;
+	private int nextElement=-1;
 	
 	public SystemControl() {
-		StartView sv = new StartView(this);
-		r = new Random();
+		new StartView(this);
 	}
 	
 	/**
@@ -43,19 +41,18 @@ public class SystemControl implements ActionListener {
 	 * TODO
 	 */
 	public void nextStep(){
-		int i = r.nextInt(elements.size());
-		
-		AbstractElement el = elements.get(i);
-		
-		Command move = new Move(el);
-		
-		execute(move);
-		
-		Command evolve = new Evolve(el);
-		
-		execute(evolve);
-		
-		av.updateView();
+  	        nextElement = nextElement<elements.size()-1 ? nextElement+1 : 0;
+  		AbstractElement el = elements.get(nextElement);
+  		
+  		Command move = new Move(el);
+  		
+  		execute(move);
+  		
+  		Command evolve = new Evolve(el);
+  		
+  		execute(evolve);
+  		
+  		av.updateView(nextElement<elements.size()-1 ? nextElement+1 : 0);
 	}
 	
 	/**
@@ -90,7 +87,7 @@ public class SystemControl implements ActionListener {
 		
 		af.setElements((ArrayList<AbstractElement>) elements);
 		
-		av.updateView();
+		av.updateView(0);      
 		// launch game according to the mode
 		if(mode.equals("auto")){
 			new Timer(1000, this).start();

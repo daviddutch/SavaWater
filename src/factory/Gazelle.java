@@ -27,8 +27,21 @@ public class Gazelle extends AbstractElementSavane {
   @Override
   public void move() {
     ArrayList<AbstractElement> listElem = getReachableElemAtDist(0);
+    
     for (AbstractElement elem : listElem){
-      if (elem instanceof Herbe){
+      if (elem instanceof Gazelle){
+        Gazelle gazelle = (Gazelle)elem;
+        setPosition(elem.getPosition());
+        if (gender==Gender.MALE && gazelle.gender==Gender.FEMALE){
+          GridPoint childPos = getRndFreePoint();
+          if (childPos!=null){
+            Gazelle child = new Gazelle(field);
+            child.setPosition(childPos);
+            field.addElement(child);
+          }
+        }
+        return;
+      }else if (elem instanceof Herbe){
         life=MAX_LIFE;
         hasEaten=true;
         setPosition(elem.getPosition());
