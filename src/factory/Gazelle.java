@@ -27,6 +27,7 @@ public class Gazelle extends AbstractElementSavane {
   @Override
   public void move() {
     ArrayList<AbstractElement> listElem = getReachableElemAtDist(0);
+    
     for (AbstractElement elem : listElem){
       if (elem instanceof Gazelle){
         Gazelle gazelle = (Gazelle)elem;

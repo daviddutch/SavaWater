@@ -17,6 +17,6 @@ public abstract class AbstractView {
 		this.f = f;
 	}
 	
-	public abstract void updateView();
+	public abstract void updateView(int nextElemIndex);
 	
 }

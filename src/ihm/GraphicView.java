@@ -18,7 +18,6 @@ import java.awt.event.ActionListener;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Line2D;
 import java.awt.image.BufferedImage;
-import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -92,7 +91,7 @@ public class GraphicView extends AbstractView implements ActionListener{
 	/**
 	 * Update the graphics contant
 	 */
-	public void updateView() {
+	public void updateView(int nextElemIndex) {
 		Graphics2D g2d = (Graphics2D) graphicPanel.getGraphics();
 		Image image;
 		image = new BufferedImage(GRAPHIC_PANEL_WIDTH,GRAPHIC_PANEL_WIDTH,BufferedImage.TYPE_INT_RGB);
@@ -103,9 +102,20 @@ public class GraphicView extends AbstractView implements ActionListener{
 		retriveG2dState(g2dBuffer);
 		drawElements(g2dBuffer);
 		drawGrid(g2dBuffer);
+		drawFocus(nextElemIndex, g2dBuffer);
 		g2d.drawImage(image, 0, 0, null);
 	}
-	/**
+	private void drawFocus(int nextElemIndex, Graphics2D g2dBuffer) {
+	  saveG2dState(g2dBuffer);
+	  g2dBuffer.setComposite(java.awt.AlphaComposite.getInstance(java.awt.AlphaComposite.SRC_OVER,.3f));
+          GridPoint gp = field.getElements().get(nextElemIndex).getPosition();
+          Point pos = getCoordinateCase(gp);
+          g2dBuffer.setColor(Color.RED);
+          g2dBuffer.fillRect(pos.x, pos.y, CASE_SIZE_X, CASE_SIZE_Y);
+          retriveG2dState(g2dBuffer);
+          
+        }
+  /**
 	 * Get the local point in the panel of the corner left down of a gridPoint
 	 * @param p GridPoint
 	 * @return local location Point
@@ -250,6 +260,7 @@ public class GraphicView extends AbstractView implements ActionListener{
 		double scale_y = CASE_SIZE_Y / (double) IMAGE_SIZE;
 		if(el.getGender()==Gender.FEMALE){
 			scale_x *= -1;
+			x+=CASE_SIZE_X;
 		}
 		// Translate the image position
 		AffineTransform af = AffineTransform.getTranslateInstance(x, y);

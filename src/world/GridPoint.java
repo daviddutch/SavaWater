@@ -22,4 +22,7 @@ public class GridPoint {
     GridPoint gp2 = (GridPoint) gp;
     return (x==gp2.getX() && y==gp2.getY());
   }
+  public String toString(){
+    return "("+x+","+y+")";
+  }
 }
