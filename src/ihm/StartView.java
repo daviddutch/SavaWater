@@ -76,7 +76,7 @@ public class StartView extends JFrame implements ActionListener{
 		String mode = (buttonAuto.isSelected()) ? "auto" : "manual";
 		String type = (buttonConsole.isSelected()) ? "consol" : "graphic";
 		String game = (buttonSava.isSelected()) ? "Savana" : "Water";
-		ctrl.startSimulation(mode,type,game);
 		setVisible(false);
+		ctrl.startSimulation(mode,type,game);
 	}
 }
