@@ -4,7 +4,7 @@ import world.AbstractField;
 import world.GridPoint;
 
 public class Banquise extends AbstractElementWater {
-  private static final int MAX_ROUNDS=5;
+  private static final int MAX_ROUNDS=3;
   private int rounds=0;
   
   public Banquise(AbstractField field) {
