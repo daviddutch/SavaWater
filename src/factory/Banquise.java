@@ -4,7 +4,7 @@ import world.AbstractField;
 import world.GridPoint;
 
 public class Banquise extends AbstractElementWater {
-  private static final int MAX_ROUNDS=3;
+  private static final int MAX_ROUNDS=2;
   private int rounds=0;
   
   public Banquise(AbstractField field) {
@@ -21,7 +21,7 @@ public class Banquise extends AbstractElementWater {
   @Override
   public void evolve() {
     if (rounds==MAX_ROUNDS){
-      GridPoint childPos = getRndFreePoint();
+      GridPoint childPos = getRndFreePointBanquise();
       if (childPos!=null){
         Banquise child = new Banquise(field);
         child.setPosition(childPos);

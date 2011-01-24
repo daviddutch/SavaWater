@@ -4,6 +4,7 @@ import javax.swing.Timer;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import world.AbstractField;
 import world.AbstractFieldCreator;
@@ -25,7 +26,8 @@ public class SystemControl implements ActionListener {
 	private List<AbstractElement> elements;
 	private AbstractView av;
 	private int nextElement=-1;
-	
+	private Random rnd = new Random();
+	private static String gameType;
 	public SystemControl() {
 		new StartView(this);
 	}
@@ -34,14 +36,24 @@ public class SystemControl implements ActionListener {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		SystemControl sc = new SystemControl();
+		new SystemControl();
 	}
 	
-	/**
-	 * TODO
-	 */
+	
+	private int turnOrque=5;
 	public void nextStep(){
-  	        nextElement = nextElement<elements.size()-1 ? nextElement+1 : 0;
+		if(gameType.equals("Savana")){
+			nextElement = nextElement<elements.size()-1 ? nextElement+1 : 0;
+		}
+		else if(gameType.equals("Water")) {
+			turnOrque--;
+			if(turnOrque==0){
+				turnOrque=5;
+				nextElement = 0;
+			}else{
+				nextElement = rnd.nextInt(elements.size()-1);
+			}
+		}
   		AbstractElement el = elements.get(nextElement);
   		
   		Command move = new Move(el);
@@ -51,8 +63,13 @@ public class SystemControl implements ActionListener {
   		Command evolve = new Evolve(el);
   		
   		execute(evolve);
+  		if(gameType.equals("Savana")){
+  			av.updateView(nextElement<elements.size()-1 ? nextElement+1 : 0);
+		}
+		else if(gameType.equals("Water")) {
+			av.updateView(nextElement);
+		}
   		
-  		av.updateView(nextElement<elements.size()-1 ? nextElement+1 : 0);
 	}
 	
 	/**
@@ -69,7 +86,7 @@ public class SystemControl implements ActionListener {
 		// creation of the view
 		AbstractVueFactory avf = new ConcreteViewFactory();
 		av = avf.createView(type,af);
-		
+		gameType=game;
 		av.setSystemControler(this);
 		// creation of elements
 		AbstractElementFactory aef = null;
@@ -90,11 +107,10 @@ public class SystemControl implements ActionListener {
 		av.updateView(0);
 		// launch game according to the mode
 		if(mode.equals("auto")){
-			new Timer(1000, this).start();
+			new Timer(333, this).start();
 		}
 	}
 	
-	// TODO
 	public void execute(Command cmd){
 		cmd.doit();
 	}

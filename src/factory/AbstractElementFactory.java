@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Random;
 
 import world.AbstractField;
-import world.Field;
 import world.GridPoint;
 
 public abstract class AbstractElementFactory {

@@ -264,7 +264,7 @@ public class GraphicView extends AbstractView implements ActionListener{
 			x+=CASE_SIZE_X;
 		}
 		// Translate the image position
-		//AffineTransform af = AffineTransform.getTranslateInstance(x+CASE_SIZE_X, y);
+
 		AffineTransform af = AffineTransform.getTranslateInstance(x, y);
 		// concatenate the image the right size
 		af.concatenate(AffineTransform.getScaleInstance(scale_x, scale_y));

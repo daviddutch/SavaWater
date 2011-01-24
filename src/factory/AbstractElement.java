@@ -175,7 +175,7 @@ public abstract class AbstractElement {
           if (reachable.getX()<0 || reachable.getX()>=AbstractField.SIZE_X) continue;
           if (reachable.getY()<0 || reachable.getY()>=AbstractField.SIZE_Y) continue;
           ArrayList<AbstractElement> elems = getElementsAtPos(reachable);
-          if (elems.size()==0)
+          if (elems.size()==0 || (elems.size()==1 && elems.get(0) instanceof Banquise))
             freePoints.add(reachable);
         }
       }

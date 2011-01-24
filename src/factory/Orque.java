@@ -32,12 +32,9 @@ public class Orque extends AbstractElementWater {
 	  allowedMoves = new boolean[][] {{true, true, true},{true, true, true}, {true, true, true}};
 	  ArrayList<AbstractElement> listElem = getReachableElemAtDist();
 	  for (AbstractElement elem : listElem){
-	     if (elem instanceof Banquise){
 	        field.removeElement(elem);
-	        return;
-	      }
-	    }
-	    allowedMoves = new boolean[][] {{false, true, false},{true, true, true}, {false, true, false}};
+	  }
+	  allowedMoves = new boolean[][] {{false, true, false},{true, true, true}, {false, true, false}};
   }
 
 }

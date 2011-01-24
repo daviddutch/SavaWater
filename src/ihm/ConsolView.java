@@ -1,23 +1,14 @@
 package ihm;
 
 
-import java.util.ArrayList;
+
 import java.util.List;
 
 import factory.AbstractElement;
 import factory.AbstractElementSavane;
 import factory.AbstractElementWater;
-import factory.Banquise;
-import factory.Gazelle;
-import factory.Herbe;
-import factory.Lion;
-import factory.Orque;
-import factory.Pingouin;
-import factory.Pygmee;
-import factory.Requin;
 
 import world.AbstractField;
-import world.Field;
 import world.GridPoint;
 
 public class ConsolView extends AbstractView {
