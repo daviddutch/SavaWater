@@ -12,7 +12,7 @@ public class Requin extends AbstractElementWater {
 
 	public Requin(AbstractField field) {
 		super(field);
-		img = "src/ressources/water/requin.png";
+		img = "/ressources/water/requin.png";
 		letter = "R";
 		allowedMoves = new boolean[][] { { false, true, false },
 				{ true, true, true }, { false, true, false } };
@@ -28,7 +28,7 @@ public class Requin extends AbstractElementWater {
 
 	@Override
 	public void evolve() {
-		ArrayList<AbstractElement> listElem = getReachableElemAtDist(0);
+		ArrayList<AbstractElement> listElem = getReachableElemAtDist();
 		for (AbstractElement elem : listElem) {
 			if (elem instanceof Pingouin) {
 				life = MAX_LIFE;
@@ -42,14 +42,4 @@ public class Requin extends AbstractElementWater {
 		if (life < 0)
 			field.removeElement(this);
 	}
-	/*
-	 * @Override public GridPoint getPosition() { // TODO Auto-generated method
-	 * stub return null; }
-	 * 
-	 * @Override public void setPosition(GridPoint point) { // TODO
-	 * Auto-generated method stub
-	 * 
-	 * }
-	 */
-
 }

@@ -9,7 +9,7 @@ public class Banquise extends AbstractElementWater {
   
   public Banquise(AbstractField field) {
     super(field);
-    img = "src/ressources/water/banquise.png";
+    img = "/ressources/water/banquise.png";
     letter = "B";
     allowedMoves = new boolean[][] {{true, true, true},{true, true, true}, {true, true, true}};
   }

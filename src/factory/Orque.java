@@ -9,7 +9,7 @@ public class Orque extends AbstractElementWater {
   public Orque(AbstractField field) {
     super(field);
     allowedMoves = new boolean[][] {{false, true, false},{true, true, true}, {false, true, false}};
-    img = "src/ressources/water/orque.png";
+    img = "/ressources/water/orque.png";
     letter = "O";
   }
 
@@ -30,7 +30,7 @@ public class Orque extends AbstractElementWater {
   @Override
   public void evolve() {
 	  allowedMoves = new boolean[][] {{true, true, true},{true, true, true}, {true, true, true}};
-	  ArrayList<AbstractElement> listElem = getReachableElemAtDist(0);
+	  ArrayList<AbstractElement> listElem = getReachableElemAtDist();
 	  for (AbstractElement elem : listElem){
 	     if (elem instanceof Banquise){
 	        field.removeElement(elem);

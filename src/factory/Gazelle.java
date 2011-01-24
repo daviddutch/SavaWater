@@ -9,12 +9,11 @@ import world.GridPoint;
 public class Gazelle extends AbstractElementSavane {
   private static final int MAX_LIFE=5;
   private int life=MAX_LIFE;
-  private boolean hasEaten=false;
-  private static Random rnd   = new Random();
+  private static Random rnd = new Random();
   
   public Gazelle(AbstractField field){
     super(field);
-    img = "src/ressources/savane/gazelle.png";
+    img = "/ressources/savane/gazelle.png";
     letter = "G";
     allowedMoves = new boolean[][] {{false, true, false},{true, true, true}, {false, true, false}};
     
@@ -26,12 +25,35 @@ public class Gazelle extends AbstractElementSavane {
   }
   @Override
   public void move() {
-    ArrayList<AbstractElement> listElem = getReachableElemAtDist(0);
+    ArrayList<AbstractElement> listElem = getReachableElemAtDist();
+    
+    for (AbstractElement elem : listElem){ //for each rechable elements
+      ArrayList<AbstractElement> atPos = getElementsAtPos(getPosition());
+      if (elem instanceof Gazelle){
+        if (atPos.size()<2){
+          setPosition(elem.getPosition());
+          return;
+        }
+      }else if (elem instanceof Herbe){
+        if (atPos.size()<2){
+          setPosition(elem.getPosition());
+          return;
+        }
+      }
+    }
+    //no reachable element so move randomly
+    GridPoint nextPos = getRndFreePoint();
+    if (nextPos!=null)
+      setPosition(nextPos);
+  }
+  
+  @Override
+  public void evolve() {
+    ArrayList<AbstractElement> listElem = getElementsAtPos(getPosition());
     
     for (AbstractElement elem : listElem){
       if (elem instanceof Gazelle){
         Gazelle gazelle = (Gazelle)elem;
-        setPosition(elem.getPosition());
         if (gender==Gender.MALE && gazelle.gender==Gender.FEMALE){
           GridPoint childPos = getRndFreePoint();
           if (childPos!=null){
@@ -40,23 +62,13 @@ public class Gazelle extends AbstractElementSavane {
             field.addElement(child);
           }
         }
-        return;
+        break;
       }else if (elem instanceof Herbe){
         life=MAX_LIFE;
-        hasEaten=true;
-        setPosition(elem.getPosition());
         return;
       }
     }
-    GridPoint nextPos = getRndFreePoint();
-    if (nextPos!=null)
-      setPosition(nextPos);
-  }
-  
-  @Override
-  public void evolve() {
-    if (!hasEaten) life--;
-    hasEaten=false;
+    life--;
     if (life<0) {
       field.removeElement(this);
     }

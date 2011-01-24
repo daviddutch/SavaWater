@@ -8,6 +8,7 @@ import java.awt.Graphics2D;
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.Rectangle;
+import java.net.URL;
 import java.util.List;
 import java.awt.Paint;
 import java.awt.Point;
@@ -28,7 +29,6 @@ import factory.*;
 import factory.AbstractElement.Gender;
 
 import world.AbstractField;
-import world.Field;
 import world.GridPoint;
 /**
  * Graphics view of the game
@@ -245,7 +245,8 @@ public class GraphicView extends AbstractView implements ActionListener{
 		// concatenate the image the right size
 		af.concatenate(AffineTransform.getScaleInstance(scale_x, scale_y));
 		// Draw the image with the transformation
-		Image img = Toolkit.getDefaultToolkit().getImage(el.getImage());
+		URL urlImage = getClass().getResource(el.getImage());
+		Image img = Toolkit.getDefaultToolkit().getImage(urlImage);
 		g2d.drawImage(img, af, null);
 	}
 	
@@ -263,12 +264,15 @@ public class GraphicView extends AbstractView implements ActionListener{
 			x+=CASE_SIZE_X;
 		}
 		// Translate the image position
-		AffineTransform af = AffineTransform.getTranslateInstance(x+CASE_SIZE_X, y);
+		//AffineTransform af = AffineTransform.getTranslateInstance(x+CASE_SIZE_X, y);
+		AffineTransform af = AffineTransform.getTranslateInstance(x, y);
 		// concatenate the image the right size
 		af.concatenate(AffineTransform.getScaleInstance(scale_x, scale_y));
 		
 		// Draw the image with the transformation
-		Image img = Toolkit.getDefaultToolkit().getImage(el.getImage());
+		URL urlImage = getClass().getResource(el.getImage());
+		Image img = Toolkit.getDefaultToolkit().getImage(urlImage);
+
 		g2d.drawImage(img, af, null);
 	}
 
