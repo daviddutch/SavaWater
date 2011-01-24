@@ -11,7 +11,7 @@ public class Herbe extends AbstractElementSavane {
   
   public Herbe(AbstractField field){
     super(field);
-    img = "src/ressources/savane/herbe.png";
+    img = "/ressources/savane/herbe.png";
     letter = "H";
     allowedMoves = new boolean[][] {{true, true, true},{true, true, true}, {true, true, true}};
   }

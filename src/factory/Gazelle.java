@@ -14,7 +14,7 @@ public class Gazelle extends AbstractElementSavane {
   
   public Gazelle(AbstractField field){
     super(field);
-    img = "src/ressources/savane/gazelle.png";
+    img = "/ressources/savane/gazelle.png";
     letter = "G";
     allowedMoves = new boolean[][] {{false, true, false},{true, true, true}, {false, true, false}};
     

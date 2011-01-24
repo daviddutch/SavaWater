@@ -14,7 +14,7 @@ public class Lion extends AbstractElementSavane {
   
   private Lion(AbstractField field){
     super(field);
-    img = "src/ressources/savane/lion.png";
+    img = "/ressources/savane/lion.png";
     letter = "L";
     allowedMoves = new boolean[][] {{true, true, true},{true, true, true}, {true, true, true}};
   }

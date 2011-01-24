@@ -14,7 +14,7 @@ public class Pygmee extends AbstractElementSavane {
   
   public Pygmee(AbstractField field){
     super(field);
-    img = "src/ressources/savane/pygmee.png";
+    img = "/ressources/savane/pygmee.png";
     letter = "P";
     allowedMoves = new boolean[][] {{true, false, true},{false, true, false}, {true, false, true}};
   }
@@ -23,7 +23,7 @@ public class Pygmee extends AbstractElementSavane {
     ArrayList<AbstractElement> listElem = getReachableElemAtDist(0);
     for (AbstractElement elem : listElem){
       if (elem instanceof Gazelle){
-        Gazelle gazelle = (Gazelle)elem;
+        //Gazelle gazelle = (Gazelle)elem;
         life     = MAX_LIFE;
         hasEaten = true;
         setPosition(elem.getPosition());

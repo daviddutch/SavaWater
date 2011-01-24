@@ -2,7 +2,6 @@ package factory;
 
 import java.util.ArrayList;
 
-import factory.AbstractElement.Gender;
 import world.AbstractField;
 import world.GridPoint;
 
@@ -12,13 +11,13 @@ public class Pingouin extends AbstractElementWater {
 		super(field);
 		allowedMoves = new boolean[][] { { false, true, false },
 				{ true, false, true }, { false, true, false } };
-		img = "src/ressources/water/pingouin.png";
+		img = "/ressources/water/pingouin.png";
 		letter = "P";
 	}
 
 	@Override
 	public void move() {
-		GridPoint nextPos = getRndFreePoint();
+		GridPoint nextPos = getRndFreePointPinguin();
 		if (nextPos != null)
 			setPosition(nextPos);
 		return;
@@ -26,7 +25,7 @@ public class Pingouin extends AbstractElementWater {
 
 	@Override
 	public void evolve() {
-		ArrayList<AbstractElement> listElem = getReachableElemAtDist(0);
+		ArrayList<AbstractElement> listElem = getReachableElemAtDist();
 		for (AbstractElement elem : listElem) {
 			if (elem instanceof Pingouin) {
 				GridPoint childPos = getFreeRandomPoint();
